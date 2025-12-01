@@ -17,7 +17,7 @@ def draw_face(color):
     turt.forward(150)
     turt.left(90)
     turt.pendown()
-    # set turtle color to inputted color
+    #set turtle color to inputted color
     turt.pencolor(color)
     turt.fillcolor(color)
     turt.begin_fill()
@@ -28,6 +28,6 @@ def draw_face(color):
         turt.circle(120, 45)
     turt.end_fill()
 
-draw_face("green")
+draw_face("lightblue")
 
 win.exitonclick()
