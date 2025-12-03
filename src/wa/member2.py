@@ -1,4 +1,6 @@
 import turtle
+import tkinter as tk
+
 
 
 def draw_face(color):
@@ -59,19 +61,40 @@ def draw_hair_strands(t, color, start_x, start_y, strands=10, length=120):
         t.goto(start_x - (i * 2), start_y)
         t.pendown()
 
+def draw_hair_from_input():
+    hair_color = color_entry.get()
+    hair_turtle.speed(0)
+    draw_hair_strands(hair_turtle, hair_color, 145, 146, strands=25, length=250)
+    win.update()  # updates the speed of dawing hair very fast
 
-win = turtle.Screen()
-turt = turtle.Turtle()
-turt.speed(5)
 
+
+
+#tkinter window
+root = tk.Tk()
+#created canvas to attach the turtle and tikinter in one window
+canvas = tk.Canvas(root, width=600, height=600)
+canvas.pack()
+root.title("Hair Color")
+tk.Label(root, text="Enter hair color:").pack(pady=5)
+color_entry = tk.Entry(root)
+color_entry.pack(pady=5)
+tk.Button(root, text="Draw Hair", command=draw_hair_from_input).pack(pady=10)
+
+
+
+win = turtle.TurtleScreen(canvas)
+win.tracer(0,0)#draws hair instantly no animation
+turt = turtle.RawTurtle(canvas)
+turt.speed(0)
 draw_face("brown")
-left_turtle=turtle.Turtle()
-left_turtle.speed(20)
-draw_hair_strands(left_turtle,"black",145,146,strands=25,length=250)
-
-nose_turtle = turtle.Turtle()
+hair_turtle=turtle.RawTurtle(canvas)
+hair_turtle.speed(0)
+nose_turtle = turtle.RawTurtle(canvas)
 nose_turtle.hideturtle()
-nose_turtle.speed(5)
+nose_turtle.speed(0)
+draw_hair_strands(hair_turtle,"black", 145, 146, strands=25, length=250)#draws the default hair
+win.update()
 draw_nose(nose_turtle)
 
-win.exitonclick()
+root.mainloop()
