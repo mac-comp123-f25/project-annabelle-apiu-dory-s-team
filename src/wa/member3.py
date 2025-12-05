@@ -24,6 +24,10 @@ bg_turt = turtle.RawTurtle(screen)     # For background
 bg_turt.hideturtle()
 bg_turt.speed(0)
 
+ear_turt = turtle.RawTurtle(screen)    #For ears
+ear_turt.hideturtle()
+ear_turt.speed(0)
+
 # Face Drawing
 def draw_face(color):
     face_turt.penup()
@@ -47,6 +51,7 @@ def draw_face(color):
 
 # Mouth Drawing
 def draw_mouth(mouth_type, x, y, size):
+    mouth_turt.clear()
     mouth_turt.penup()
     mouth_turt.goto(x, y)
     mouth_turt.pendown()
@@ -61,19 +66,79 @@ def draw_mouth(mouth_type, x, y, size):
         mouth_turt.setheading(0)
         mouth_turt.circle(size)
 
+#Ear functions
+def draw_ears(include_earrings=False):
+    ear_color = face_turt.fillcolor()
+
+    ear_turt.clear()
+    ear_turt.penup()
+    ear_turt.pencolor("black")
+    ear_turt.fillcolor(ear_color)
+
+    # LEFT EAR
+    ear_turt.goto(-142, 40)
+    ear_turt.setheading(90)
+    ear_turt.begin_fill()
+    ear_turt.pendown()
+    ear_turt.circle(35, 110)
+    ear_turt.circle(20, 130)
+    ear_turt.circle(35, 110)
+    ear_turt.end_fill()
+    ear_turt.penup()
+
+    if include_earrings:
+        ear_turt.fillcolor("gold")
+        ear_turt.pencolor("gold")
+        ear_turt.goto(-165, 29)
+        ear_turt.begin_fill()
+        ear_turt.circle(8)
+        ear_turt.end_fill()
+
+    # RIGHT EAR
+    ear_turt.pencolor("black")
+    ear_turt.fillcolor(ear_color)
+
+    ear_turt.goto(142, 40)
+    ear_turt.setheading(90)
+    ear_turt.begin_fill()
+    ear_turt.pendown()
+
+    ear_turt.circle(-35, 110)
+    ear_turt.circle(-20, 130)
+    ear_turt.circle(-35, 110)
+    ear_turt.end_fill()
+    ear_turt.penup()
+
+    if include_earrings:
+        ear_turt.fillcolor("gold")
+        ear_turt.pencolor("gold")
+        ear_turt.goto(176, 35)
+        ear_turt.begin_fill()
+        ear_turt.circle(8)
+        ear_turt.end_fill()
+
+
+
 # Background Functions
 def bg_solid(color):
     screen.bgcolor(color)
 
 # Button Functions
 def draw_smile():
-    draw_mouth("smile", -40, -70, 50)
+    draw_mouth("smile", -48, -70, 50)
 
 def draw_frown():
-    draw_mouth("frown", 40, -100, 50)
+    draw_mouth("frown", 45, -100, 50)
 
 def draw_excited():
     draw_mouth("excited", 0, -100, 40)
+
+def draw_ears_only():
+    draw_ears(False)
+
+def draw_ears_with_earrings():
+    draw_ears(True)
+
 
 # Create Buttons
 mouth_frame = tk.Frame(root)
@@ -91,6 +156,13 @@ tk.Button(bg_frame, text="Blue", width=10, command=lambda: bg_solid("lightblue")
 tk.Button(bg_frame, text="Pink", width=10, command=lambda: bg_solid("pink")).grid(row=0, column=2)
 tk.Button(bg_frame, text="Yellow", width=10, command=lambda: bg_solid("yellow")).grid(row=0, column=3)
 tk.Button(bg_frame, text="Orange", width=10, command=lambda: bg_solid("orange")).grid(row=0, column=4)
+
+ears_frame = tk.Frame(root)
+ears_frame.pack(pady=10)
+
+tk.Label(ears_frame, text="Ears:").grid(row=0, column=0)
+tk.Button(ears_frame, text="Ears Only", width=12, command=draw_ears_only).grid(row=0, column=1)
+tk.Button(ears_frame, text="Ears + Earrings", width=12, command=draw_ears_with_earrings).grid(row=0, column=2)
 
 
 # Draw initial face
