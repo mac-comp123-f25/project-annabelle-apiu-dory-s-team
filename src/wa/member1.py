@@ -4,41 +4,25 @@ import turtle
 import tkinter as tk
 
 win = turtle.Screen()
+eyebrow_turt = turtle.Turtle()
 
-main = tk.Tk()
-canvas = tk.Canvas(main, width = 600, height = 600)
+eyes_turt = turtle.RawTurtle(win)
+eyes_turt.speed(0)
+eyes_turt.hideturtle()
 
-
-def draw_face(color):
-    face_turt = turtle.Turtle()
-    face_turt.speed(0)
-    face_turt.hideturtle()
-    face_turt.penup()
-    face_turt.goto(0, -150)
-    face_turt.pendown()
-    # set turtle color to inputted color
-    face_turt.pencolor(color)
-    face_turt.fillcolor(color)
-    face_turt.begin_fill()
-    # draw face
-    for x in range(2):
-        face_turt.circle(120, 45)
-        face_turt.circle(200, 90)
-        face_turt.circle(120, 45)
-    face_turt.end_fill()
-    # go back to center
-    face_turt.penup()
-    face_turt.goto(0,0)
-    face_turt.pendown()
+eyebrow_turt = turtle.RawTurtle(win)
+eyebrow_turt.color("black")
+eyebrow_turt.width(8)
+eyebrow_turt.speed(0)
+eyebrow_turt.hideturtle()
 
 def draw_eyes(color):
-    eyes_turt = turtle.Turtle()
-    eyes_turt.speed(0)
     eyes_turt.penup()
-    eyes_turt.left(90)
-    eyes_turt.forward(60)
-    eyes_turt.right(90)
-    eyes_turt.forward(20)
+    eyes_turt.goto(20, 60)
+    #eyes_turt.left(90)
+    #eyes_turt.forward(60)
+    #eyes_turt.right(90)
+    #eyes_turt.forward(20)
     eyes_turt.pendown()
     eyes_turt.fillcolor("white")
     eyes_turt.begin_fill()
@@ -68,33 +52,92 @@ def draw_eyes(color):
     eyes_turt.dot(45, color)
     eyes_turt.dot(20, "black")
 
-def face1():
-    draw_face("brown")
+def draw_eyes_blue():
+    draw_eyes("light blue")
 
-def face2():
-    draw_face("pink")
+def draw_eyes_green():
+    draw_eyes("#92b092")
 
-def face3():
-    draw_face("light blue")
+def draw_eyes_brown():
+    draw_eyes("#73491c")
 
-eyebrow_turt = turtle.Turtle()
-eyebrow_turt.color("black")
-eyebrow_turt.hideturtle()
-# move to position
-eyebrow_turt.penup()
-eyebrow_turt.goto(-100, 60)
-eyebrow_turt.pendown()
-eyebrow_turt.circle(50, 100)
+def draw_eyes_hazel():
+    draw_eyes("#967b51")
 
-face_frame = tk.Frame(main)
-face_frame.pack(pady = 10)
+def eyebrow_raised():
+    eyebrow_turt.penup()
+    eyebrow_turt.goto(115, 100)
+    eyebrow_turt.setheading(130)
+    eyebrow_turt.pendown()
+    eyebrow_turt.circle(50, 100)
+    eyebrow_turt.setheading(180)
+    eyebrow_turt.penup()
+    eyebrow_turt.forward(70)
+    eyebrow_turt.setheading(130)
+    eyebrow_turt.pendown()
+    eyebrow_turt.circle(50, 100)
 
-tk.Button(face_frame, text = "1", command = face1, width = 10).grid(row = 0, column = 0, padx = 5)
-tk.Button(face_frame, text = "2", command = face2, width = 10).grid(row = 0, column = 2, padx = 5)
-tk.Button(face_frame, text = "3", command = face3, width = 10).grid(row = 0, column = 3, padx = 5)
+def eyebrow_angry():
+    eyebrow_turt.penup()
+    eyebrow_turt.goto(110, 115)
+    eyebrow_turt.setheading(200)
+    eyebrow_turt.pendown()
+    eyebrow_turt.forward(70)
+    eyebrow_turt.setheading(180)
+    eyebrow_turt.penup()
+    eyebrow_turt.forward(80)
+    eyebrow_turt.setheading(160)
+    eyebrow_turt.pendown()
+    eyebrow_turt.forward(70)
+
+def eyebrow_neutral():
+    eyebrow_turt.penup()
+    eyebrow_turt.goto(110, 115)
+    eyebrow_turt.setheading(180)
+    eyebrow_turt.pendown()
+    eyebrow_turt.forward(70)
+    eyebrow_turt.penup()
+    eyebrow_turt.forward(70)
+    eyebrow_turt.pendown()
+    eyebrow_turt.forward(70)
+
+eyes_frame = tk.Frame(root)
+eyes_frame.pack(pady=10)
+
+tk.Label(eyes_frame, text = "Eye Color:").grid(row = 0, column = 0)
+tk.Button(eyes_frame, text="Blue", command=draw_eyes_blue, width=10).grid(row=0, column=0, padx=5)
+tk.Button(eyes_frame, text="Light Brown", command=draw_eyes_hazel, width=10).grid(row=0, column=1, padx=5)
+tk.Button(eyes_frame, text="Dark Brown", command=draw_eyes_brown, width=10).grid(row=0, column=2, padx=5)
+tk.Button(eyes_frame, text="Green", command=draw_eyes_green, width=10).grid(row=0, column=3, padx=5)
+
+eyebrow_frame = tk.Frame(root)
+eyebrow_frame.pack(pady=10)
+
+tk.Label(eyebrow_frame, text = "Eyebrows:").grid(row = 0, column = 0)
+tk.Button(eyebrow_frame, text = "Raised", command = eyebrow_raised, width=10).grid(row=0, column=0, padx=5)
+tk.Button(eyebrow_frame, text = "Neutral", command = eyebrow_neutral, width=10).grid(row=0, column=1, padx=5)
+tk.Button(eyebrow_frame, text = "Angry", command = eyebrow_angry, width=10).grid(row=0, column=2, padx=5)
+
+def draw_face_shade1():
+    draw_face("#562a1d")
+
+def draw_face_shade2():
+    draw_face("#7a442a")
+
+def draw_face_shade3():
+    draw_face("#af7c4f")
+
+def draw_face_shade4():
+    draw_face("#e6c9ab")
+
+def draw_face_shade5():
+    draw_face("#efdccd")
 
 
-
-
+tk.Button(face_frame, text="Shade 1", width=10, command=draw_face_shade1).grid(row=0, column=0)
+tk.Button(face_frame, text="Shade 2", width=10, command=draw_face_shade2).grid(row=0, column=1)
+tk.Button(face_frame, text="Shade 3", width=10, command=draw_face_shade3).grid(row=0, column=2)
+tk.Button(face_frame, text="Shade 4", width=10, command=draw_face_shade4).grid(row=0, column=3)
+tk.Button(face_frame, text="Shade 5", width=10, command=draw_face_shade5).grid(row=0, column=4)
 
 win.exitonclick()
