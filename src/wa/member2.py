@@ -63,7 +63,7 @@ def draw_hair_from_input():
     hair_color = color_entry.get()
     hair_turtle.speed(0)
     draw_hair_strands(hair_turtle, hair_color, 145, 146, strands=25, length=250)
-    win.update()  # updates the speed of dawing hair very fast
+    win.update()  # updates the speed of drawing hair very fast
 
 #tkinter window
 root = tk.Tk()
