@@ -28,6 +28,13 @@ ear_turt = turtle.RawTurtle(screen)    #For ears
 ear_turt.hideturtle()
 ear_turt.speed(0)
 
+#hair and the nose turtle
+hair_turtle=turtle.RawTurtle(canvas)
+hair_turtle.speed(0)
+nose_turtle = turtle.RawTurtle(canvas)
+nose_turtle.hideturtle()
+nose_turtle.speed(0)
+
 # Face Drawing
 def draw_face(color):
     face_turt.penup()
@@ -117,8 +124,6 @@ def draw_ears(include_earrings=False):
         ear_turt.circle(8)
         ear_turt.end_fill()
 
-
-
 # Background Functions
 def bg_solid(color):
     screen.bgcolor(color)
@@ -144,6 +149,97 @@ def draw_face_1():
 
 def draw_face_2():
     draw_face("pink")
+
+def draw_nose(t, size="medium"):
+    t.penup()
+    t.goto(-20, 45)
+    t.setheading(-90)
+    t.pendown()
+    t.pensize(2)
+
+    if size.lower() == "small":
+        scale = 0.5
+    elif size.lower() == "big":
+        scale = 1.5
+    else:
+        scale = 1  # default/medium
+
+    t.begin_fill()
+    t.forward(12 * scale)
+    t.right(10)
+    t.circle(20 * scale, 40)   # outer curve
+    t.circle(10 * scale, 80)   # inner curve
+
+    t.setheading(0)
+    t.circle(8 * scale, 70)    # bottom curve
+
+    t.setheading(0)
+    t.circle(15 * scale, 90)   # right nostril
+    t.circle(10 * scale, 60)
+    t.end_fill()
+
+def draw_nose_from_input():
+    size = nose_entry.get()
+    nose_turtle.clear()  # remove previous nose
+    draw_nose(nose_turtle, size)
+    screen.update()
+
+def draw_hair_bun(t, color):
+    t.hideturtle()
+    t.penup()
+    t.goto(0, 190)  # Top of the head
+    t.setheading(0)
+    t.pendown()
+    t.pencolor(color)
+    t.fillcolor(color)
+
+    # Draw bun circle
+    t.begin_fill()
+    t.circle(60)
+    t.end_fill()
+
+    # Draw connector rectangle
+    t.penup()
+    t.goto(-40, 200)
+    t.setheading(0)
+    t.pendown()
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(80)
+        t.right(90)
+        t.forward(20)
+        t.right(90)
+    t.end_fill()
+
+def draw_hair_strands(t, color, start_x=145, start_y=146, strands=20):
+    t.hideturtle()
+    t.pencolor(color)
+    t.pensize(3)
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    for i in range(strands):
+        t.setheading(130)
+        t.circle(150, 60)
+        t.circle(150, 60)
+        t.penup()
+        t.goto(start_x - (i * 3), start_y)
+        t.pendown()
+
+def draw_selected_hair():
+    hair_color = color_entry.get() or "black"
+    mode = hair_mode.get()
+    hair_turtle.clear()
+    hair_turtle.speed(0)
+
+    if mode == "bun":
+        draw_hair_bun(hair_turtle, hair_color)
+    else:
+        draw_hair_strands(hair_turtle, hair_color, start_x=145, start_y=146, strands=20)
+
+    screen.update()
+
 
 
 # Create Buttons
@@ -176,6 +272,39 @@ face_frame.pack(pady = 10)
 tk.Label(bg_frame, text="Skin Color:").grid(row=2, column=0)
 tk.Button(bg_frame, text="Color 1", width=10, command=draw_face_1).grid(row=2, column=1)
 tk.Button(bg_frame, text="Color 2", width=10, command=draw_face_2).grid(row=2, column=2)
+
+#frames for the nose and other entries
+bottom_controls = tk.Frame(root)
+bottom_controls.pack( pady=10)
+
+# Hair color
+tk.Label(bottom_controls, text="Hair color:").pack(side="left", padx=5)
+color_entry = tk.Entry(bottom_controls, width=10)
+color_entry.pack(side="left", padx=5)
+color_entry.insert(0, "black")
+
+# Draw Hair button
+tk.Button(bottom_controls, text="Draw Hair", command=draw_selected_hair).pack(side="left", padx=5)
+#hair mode and buttons
+hair_mode = tk.StringVar(value="bun")
+tk.Radiobutton(bottom_controls, text="Bun", variable=hair_mode, value="bun").pack(side="left", padx=5)
+tk.Radiobutton(bottom_controls, text="Strands", variable=hair_mode, value="strands").pack(side="left", padx=5)
+
+# Draw Nose button
+tk.Button(bottom_controls, text="Draw Nose", command=draw_nose_from_input).pack(side="left", padx=5)
+
+
+# Nose size
+tk.Label(bottom_controls, text="Nose size:").pack(side="left", padx=5)
+nose_entry = tk.Entry(bottom_controls, width=8)
+nose_entry.pack(side="left", padx=5)
+
+
+#calling the nose and hair function
+draw_hair_strands(hair_turtle,"black", 145, 146, strands=25)#draws the default hair
+screen.tracer(0,0)
+screen.update()
+draw_nose(nose_turtle)
 
 # Run the App
 root.mainloop()
