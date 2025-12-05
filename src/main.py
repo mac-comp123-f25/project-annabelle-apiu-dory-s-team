@@ -8,8 +8,6 @@ import turtle
 win = turtle.Screen()
 turt = turtle.Turtle()
 
-
-
 def draw_face(color):
     # move turtle to position to start drawing face
     turt.hideturtle()
