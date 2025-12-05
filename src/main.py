@@ -141,7 +141,7 @@ def bg_solid(color):
 
 # Button Functions
 def draw_smile():
-    draw_mouth("smile", -48, -70, 50)
+    draw_mouth("smile", -48, -50, 50)
 
 def draw_frown():
     draw_mouth("frown", 45, -100, 50)
@@ -174,7 +174,7 @@ def draw_face_shade5():
 def draw_nose_small():
     nose_turtle.clear()
     nose_turtle.penup()
-    nose_turtle.goto(-20, 45)
+    nose_turtle.goto(-20, 40)
     nose_turtle.setheading(-90)
     nose_turtle.pendown()
     nose_turtle.pensize(2)
@@ -199,7 +199,7 @@ def draw_nose_small():
 def draw_nose_medium():
     nose_turtle.clear()
     nose_turtle.penup()
-    nose_turtle.goto(-20, 45)
+    nose_turtle.goto(-20, 40)
     nose_turtle.setheading(-90)
     nose_turtle.pendown()
     nose_turtle.pensize(2)
@@ -224,7 +224,7 @@ def draw_nose_medium():
 def draw_nose_big():
     nose_turtle.clear()
     nose_turtle.penup()
-    nose_turtle.goto(-20, 45)
+    nose_turtle.goto(-20, 40)
     nose_turtle.setheading(-90)
     nose_turtle.pendown()
     nose_turtle.pensize(2)
@@ -353,6 +353,7 @@ def draw_eyes_hazel():
     draw_eyes("#967b51")
 
 def eyebrow_raised():
+    eyebrow_turt.clear()
     eyebrow_turt.penup()
     eyebrow_turt.goto(115, 100)
     eyebrow_turt.setheading(130)
@@ -366,6 +367,7 @@ def eyebrow_raised():
     eyebrow_turt.circle(50, 100)
 
 def eyebrow_angry():
+    eyebrow_turt.clear()
     eyebrow_turt.penup()
     eyebrow_turt.goto(110, 115)
     eyebrow_turt.setheading(200)
@@ -379,6 +381,7 @@ def eyebrow_angry():
     eyebrow_turt.forward(70)
 
 def eyebrow_neutral():
+    eyebrow_turt.clear()
     eyebrow_turt.penup()
     eyebrow_turt.goto(110, 115)
     eyebrow_turt.setheading(180)
@@ -403,9 +406,10 @@ tk.Button(face_frame, text="Shade 5", width=5, command=draw_face_shade5).grid(ro
 mouth_frame = tk.Frame(root)
 mouth_frame.pack(pady=10)
 
-tk.Button(mouth_frame, text="Smile", command=draw_smile, width=10).grid(row=0, column=0, padx=5)
-tk.Button(mouth_frame, text="Frown", command=draw_frown, width=10).grid(row=0, column=1, padx=5)
-tk.Button(mouth_frame, text="Excited", command=draw_excited, width=10).grid(row=0, column=2, padx=5)
+tk.Label(mouth_frame, text="Backgrounds:").grid(row=0, column=0)
+tk.Button(mouth_frame, text="Smile", command=draw_smile, width=10).grid(row=0, column=1, padx=5)
+tk.Button(mouth_frame, text="Frown", command=draw_frown, width=10).grid(row=0, column=2, padx=5)
+tk.Button(mouth_frame, text="Excited", command=draw_excited, width=10).grid(row=0, column=3, padx=5)
 
 bg_frame = tk.Frame(root)
 bg_frame.pack(pady=10)
@@ -446,26 +450,26 @@ tk.Radiobutton(bottom_controls, text="Strands", variable=hair_mode, value="stran
 nose_frame = tk.Frame(root)
 nose_frame.pack(pady=20)
 tk.Label(nose_frame, text="nose size:").grid(row=0, column=0)
-tk.Button(nose_frame, text="Small", command=draw_nose_small, width=10).grid(row=0, column=0, padx=5)
-tk.Button(nose_frame, text="medium", command=draw_nose_medium, width=10).grid(row=0, column=1, padx=5)
-tk.Button(nose_frame, text="big", command=draw_nose_big, width=10).grid(row=0, column=2, padx=5)
+tk.Button(nose_frame, text="Small", command=draw_nose_small, width=10).grid(row=0, column=1, padx=5)
+tk.Button(nose_frame, text="medium", command=draw_nose_medium, width=10).grid(row=0, column=2, padx=5)
+tk.Button(nose_frame, text="big", command=draw_nose_big, width=10).grid(row=0, column=3, padx=5)
 
 eyes_frame = tk.Frame(root)
 eyes_frame.pack(pady=10)
 
 tk.Label(eyes_frame, text = "Eye Color:").grid(row = 0, column = 0)
-tk.Button(eyes_frame, text="Blue", command=draw_eyes_blue, width=10).grid(row=0, column=0, padx=5)
-tk.Button(eyes_frame, text="Light Brown", command=draw_eyes_hazel, width=10).grid(row=0, column=1, padx=5)
-tk.Button(eyes_frame, text="Dark Brown", command=draw_eyes_brown, width=10).grid(row=0, column=2, padx=5)
-tk.Button(eyes_frame, text="Green", command=draw_eyes_green, width=10).grid(row=0, column=3, padx=5)
+tk.Button(eyes_frame, text="Blue", command=draw_eyes_blue, width=10).grid(row=0, column=1, padx=5)
+tk.Button(eyes_frame, text="Light Brown", command=draw_eyes_hazel, width=10).grid(row=0, column=2, padx=5)
+tk.Button(eyes_frame, text="Dark Brown", command=draw_eyes_brown, width=10).grid(row=0, column=3, padx=5)
+tk.Button(eyes_frame, text="Green", command=draw_eyes_green, width=10).grid(row=0, column=4, padx=5)
 
 eyebrow_frame = tk.Frame(root)
 eyebrow_frame.pack(pady=10)
 
 tk.Label(eyebrow_frame, text = "Eyebrows:").grid(row = 0, column = 0)
-tk.Button(eyebrow_frame, text = "Raised", command = eyebrow_raised, width=10).grid(row=0, column=0, padx=5)
-tk.Button(eyebrow_frame, text = "Neutral", command = eyebrow_neutral, width=10).grid(row=0, column=1, padx=5)
-tk.Button(eyebrow_frame, text = "Angry", command = eyebrow_angry, width=10).grid(row=0, column=2, padx=5)
+tk.Button(eyebrow_frame, text = "Raised", command = eyebrow_raised, width=10).grid(row=0, column=1, padx=5)
+tk.Button(eyebrow_frame, text = "Neutral", command = eyebrow_neutral, width=10).grid(row=0, column=2, padx=5)
+tk.Button(eyebrow_frame, text = "Angry", command = eyebrow_angry, width=10).grid(row=0, column=3, padx=5)
 
 
 #calling the nose and hair function
