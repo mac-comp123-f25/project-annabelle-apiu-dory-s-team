@@ -29,9 +29,9 @@ ear_turt.hideturtle()
 ear_turt.speed(0)
 
 #hair and the nose turtle
-hair_turtle=turtle.RawTurtle(canvas)
+hair_turtle=turtle.RawTurtle(screen)
 hair_turtle.speed(0)
-nose_turtle = turtle.RawTurtle(canvas)
+nose_turtle = turtle.RawTurtle(screen)
 nose_turtle.hideturtle()
 nose_turtle.speed(0)
 
@@ -150,39 +150,83 @@ def draw_face_1():
 def draw_face_2():
     draw_face("pink")
 
-def draw_nose(t, size="medium"):
-    t.penup()
-    t.goto(-20, 45)
-    t.setheading(-90)
-    t.pendown()
-    t.pensize(2)
 
-    if size.lower() == "small":
-        scale = 0.5
-    elif size.lower() == "big":
-        scale = 1.5
-    else:
-        scale = 1  # default/medium
+def draw_nose_small():
+    nose_turtle.clear()
+    nose_turtle.penup()
+    nose_turtle.goto(-20, 45)
+    nose_turtle.setheading(-90)
+    nose_turtle.pendown()
+    nose_turtle.pensize(2)
 
-    t.begin_fill()
-    t.forward(12 * scale)
-    t.right(10)
-    t.circle(20 * scale, 40)   # outer curve
-    t.circle(10 * scale, 80)   # inner curve
+    nose_turtle.begin_fill()
+    nose_turtle.forward(6)
+    nose_turtle.right(10)
+    nose_turtle.circle(5, 30)   # outer curve
+    nose_turtle.circle(3, 70)   # inner curve
 
-    t.setheading(0)
-    t.circle(8 * scale, 70)    # bottom curve
+    nose_turtle.setheading(0)
+    nose_turtle.circle(4, 70)   # bottom curve
 
-    t.setheading(0)
-    t.circle(15 * scale, 90)   # right nostril
-    t.circle(10 * scale, 60)
-    t.end_fill()
+    nose_turtle.setheading(0)
+    nose_turtle.circle(7, 90)   # right nostril
+    nose_turtle.circle(5, 60)
+    nose_turtle.end_fill()
 
-def draw_nose_from_input():
-    size = nose_entry.get()
-    nose_turtle.clear()  # remove previous nose
-    draw_nose(nose_turtle, size)
-    screen.update()
+
+
+
+def draw_nose_medium():
+    nose_turtle.clear()
+    nose_turtle.penup()
+    nose_turtle.goto(-20, 45)
+    nose_turtle.setheading(-90)
+    nose_turtle.pendown()
+    nose_turtle.pensize(2)
+
+    nose_turtle.begin_fill()
+    nose_turtle.forward(12)
+    nose_turtle.right(10)
+    nose_turtle.circle(10, 30)   # outer curve
+    nose_turtle.circle(5, 70)    # inner curve
+
+    nose_turtle.setheading(0)
+    nose_turtle.circle(8, 70)    # bottom curve
+
+    nose_turtle.setheading(0)
+    nose_turtle.circle(15, 90)   # right nostril
+    nose_turtle.circle(10, 60)
+    nose_turtle.end_fill()
+
+
+
+
+def draw_nose_big():
+    nose_turtle.clear()
+    nose_turtle.penup()
+    nose_turtle.goto(-20, 45)
+    nose_turtle.setheading(-90)
+    nose_turtle.pendown()
+    nose_turtle.pensize(2)
+
+    nose_turtle.begin_fill()
+    nose_turtle.forward(18)
+    nose_turtle.right(10)
+    nose_turtle.circle(15, 30)   # outer curve
+    nose_turtle.circle(10, 70)   # inner curve
+
+    nose_turtle.setheading(0)
+    nose_turtle.circle(12, 70)   # bottom curve
+
+    nose_turtle.setheading(0)
+    nose_turtle.circle(20, 90)   # right nostril
+    nose_turtle.circle(15, 60)
+    nose_turtle.end_fill()
+
+
+
+
+
 
 def draw_hair_bun(t, color):
     t.hideturtle()
@@ -291,13 +335,14 @@ tk.Radiobutton(bottom_controls, text="Bun", variable=hair_mode, value="bun").pac
 tk.Radiobutton(bottom_controls, text="Strands", variable=hair_mode, value="strands").pack(side="left", padx=5)
 
 # Draw Nose button
-tk.Button(bottom_controls, text="Draw Nose", command=draw_nose_from_input).pack(side="left", padx=5)
+#tk.Button(bottom_controls, text="Draw Nose", command=draw_nose_from_input).pack(side="left", padx=5)
 
-
-# Nose size
-tk.Label(bottom_controls, text="Nose size:").pack(side="left", padx=5)
-nose_entry = tk.Entry(bottom_controls, width=8)
-nose_entry.pack(side="left", padx=5)
+nose_frame = tk.Frame(root)
+nose_frame.pack(pady=20)
+tk.Label(nose_frame, text="nose size:").grid(row=0, column=0)
+tk.Button(nose_frame, text="Small", command=draw_nose_small, width=10).grid(row=0, column=0, padx=5)
+tk.Button(nose_frame, text="medium", command=draw_nose_medium, width=10).grid(row=0, column=1, padx=5)
+tk.Button(nose_frame, text="big", command=draw_nose_big, width=10).grid(row=0, column=2, padx=5)
 
 
 #calling the nose and hair function
@@ -305,6 +350,7 @@ nose_entry.pack(side="left", padx=5)
 screen.tracer(0,0)
 screen.update()
 #draw_nose(nose_turtle)
+
 
 # Run the App
 root.mainloop()
