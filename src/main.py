@@ -301,10 +301,10 @@ nose_entry.pack(side="left", padx=5)
 
 
 #calling the nose and hair function
-draw_hair_strands(hair_turtle,"black", 145, 146, strands=25)#draws the default hair
+#draw_hair_strands(hair_turtle,"black", 145, 146, strands=25)#draws the default hair
 screen.tracer(0,0)
 screen.update()
-draw_nose(nose_turtle)
+#draw_nose(nose_turtle)
 
 # Run the App
 root.mainloop()
