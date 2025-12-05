@@ -73,6 +73,7 @@ def draw_mouth(mouth_type, x, y, size):
         mouth_turt.setheading(0)
         mouth_turt.circle(size)
 
+    screen.update()
 #Ear functions
 def draw_ears(include_earrings=False):
     ear_color = face_turt.fillcolor()
