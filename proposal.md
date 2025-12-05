@@ -34,7 +34,7 @@ Accessories : Dory
 
 Eyebrows: Annabelle
 
-Ears: Annabelle
+Ears: Dory
 ### Tkinter interface:
 We will all work together to program buttons for users to customize the features
 using Tkinter.
