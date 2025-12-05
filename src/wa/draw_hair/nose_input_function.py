@@ -17,27 +17,35 @@ def draw_face(color):
         turt.circle(120, 45)
         #turt.end_fill()
 
-def draw_nose(t):
+def draw_nose(t, size="medium"):
     t.penup()
     t.goto(0, 0)
     t.setheading(-90)
     t.pendown()
     t.pensize(2)
 
+    # Determine scale based on size input
+    if size.lower() == "small":
+        scale = 0.5
+    elif size.lower() == "big":
+        scale = 1.5
+    else:
+        scale = 1  # default/medium
 
     t.begin_fill()
-    t.forward(12)
+    t.forward(12 * scale)
     t.right(10)
-    t.circle(20, 40)   # small outer curve
-    t.circle(10, 80)   # small inner curve
+    t.circle(20 * scale, 40)   # outer curve
+    t.circle(10 * scale, 80)   # inner curve
 
     t.setheading(0)
-    t.circle(8, 70)    # bottom curve
+    t.circle(8 * scale, 70)    # bottom curve
 
     t.setheading(0)
-    t.circle(15, 90)   # right nostril
-    t.circle(10, 60)
+    t.circle(15 * scale, 90)   # right nostril
+    t.circle(10 * scale, 60)
     t.end_fill()
+
 
 
 
@@ -65,10 +73,16 @@ def draw_hair_from_input():
     draw_hair_strands(hair_turtle, hair_color, 145, 146, strands=25, length=250)
     win.update()  # updates the speed of dawing hair very fast
 
+def draw_nose_from_input():
+    size = nose_entry.get()
+    nose_turtle.clear()  # remove previous nose
+    draw_nose(nose_turtle, size)
+    win.update()
+
 #tkinter window
 root = tk.Tk()
 #created canvas to attach the turtle and tikinter in one window
-canvas = tk.Canvas(root, width=800, height=800)
+canvas = tk.Canvas(root, width=600, height=600)
 canvas.pack()
 root.title("Hair Color")
 tk.Label(root, text="Enter hair color:").pack(pady=5)
@@ -76,7 +90,13 @@ color_entry = tk.Entry(root)
 color_entry.pack(pady=5)
 tk.Button(root, text="Draw Hair", command=draw_hair_from_input).pack(pady=10)
 
-win = turtle.TurtleScreen(canvas)#turtle_window
+#nose drawing
+tk.Label(root, text="Enter nose size (small/medium/big):").pack(pady=5)
+nose_entry = tk.Entry(root)
+nose_entry.pack(pady=5)
+tk.Button(root, text="Draw Nose", command=draw_nose_from_input).pack(pady=10)
+
+win = turtle.TurtleScreen(canvas)
 win.tracer(0,0)#draws hair instantly no animation
 turt = turtle.RawTurtle(canvas)
 turt.speed(0)

@@ -76,7 +76,7 @@ color_entry = tk.Entry(root)
 color_entry.pack(pady=5)
 tk.Button(root, text="Draw Hair", command=draw_hair_from_input).pack(pady=10)
 
-win = turtle.TurtleScreen(canvas)#turtle_window
+win = turtle.TurtleScreen(canvas)
 win.tracer(0,0)#draws hair instantly no animation
 turt = turtle.RawTurtle(canvas)
 turt.speed(0)

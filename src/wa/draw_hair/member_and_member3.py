@@ -138,6 +138,96 @@ def draw_ears_only():
 
 def draw_ears_with_earrings():
     draw_ears(True)
+def draw_nose(t, size="medium"):
+    t.penup()
+    t.goto(-20, 45)
+    t.setheading(-90)
+    t.pendown()
+    t.pensize(2)
+
+    if size.lower() == "small":
+        scale = 0.5
+    elif size.lower() == "big":
+        scale = 1.5
+    else:
+        scale = 1  # default/medium
+
+    t.begin_fill()
+    t.forward(12 * scale)
+    t.right(10)
+    t.circle(20 * scale, 40)   # outer curve
+    t.circle(10 * scale, 80)   # inner curve
+
+    t.setheading(0)
+    t.circle(8 * scale, 70)    # bottom curve
+
+    t.setheading(0)
+    t.circle(15 * scale, 90)   # right nostril
+    t.circle(10 * scale, 60)
+    t.end_fill()
+
+def draw_nose_from_input():
+    size = nose_entry.get()
+    nose_turtle.clear()  # remove previous nose
+    draw_nose(nose_turtle, size)
+    win.update()
+
+def draw_hair_bun(t, color):
+    t.hideturtle()
+    t.penup()
+    t.goto(0, 190)  # Top of the head
+    t.setheading(0)
+    t.pendown()
+    t.pencolor(color)
+    t.fillcolor(color)
+
+    # Draw bun circle
+    t.begin_fill()
+    t.circle(60)
+    t.end_fill()
+
+    # Draw connector rectangle
+    t.penup()
+    t.goto(-40, 200)
+    t.setheading(0)
+    t.pendown()
+    t.begin_fill()
+    for _ in range(2):
+        t.forward(80)
+        t.right(90)
+        t.forward(20)
+        t.right(90)
+    t.end_fill()
+
+def draw_hair_strands(t, color, start_x=145, start_y=146, strands=20):
+    t.hideturtle()
+    t.pencolor(color)
+    t.pensize(3)
+    t.penup()
+    t.goto(start_x, start_y)
+    t.pendown()
+
+    for i in range(strands):
+        t.setheading(130)
+        t.circle(150, 60)
+        t.circle(150, 60)
+        t.penup()
+        t.goto(start_x - (i * 3), start_y)
+        t.pendown()
+
+def draw_selected_hair():
+    hair_color = color_entry.get() or "black"
+    mode = hair_mode.get()
+    hair_turtle.clear()
+    hair_turtle.speed(0)
+
+    if mode == "bun":
+        draw_hair_bun(hair_turtle, hair_color)
+    else:
+        draw_hair_strands(hair_turtle, hair_color, start_x=145, start_y=146, strands=20)
+
+    win.update()
+
 
 
 # Create Buttons
