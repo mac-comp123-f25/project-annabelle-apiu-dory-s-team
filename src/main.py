@@ -83,7 +83,6 @@ def draw_mouth(mouth_type, x, y, size):
         mouth_turt.setheading(0)
         mouth_turt.circle(size)
 
-    screen.update()
 #Ear functions
 def draw_ears(include_earrings=False):
     ear_color = face_turt.fillcolor()
@@ -290,6 +289,7 @@ def draw_hair_strands(t, color, start_x=145, start_y=146, strands=20):
         t.penup()
         t.goto(start_x - (i * 3), start_y)
         t.pendown()
+    screen.update()
 
 def draw_selected_hair():
     hair_color = color_entry.get() or "black"
@@ -301,44 +301,42 @@ def draw_selected_hair():
         draw_hair_bun(hair_turtle, hair_color)
     else:
         draw_hair_strands(hair_turtle, hair_color, start_x=145, start_y=146, strands=20)
-
     screen.update()
 
 def draw_eyes(color):
+    eyes_turt.clear()
+    eyes_turt.penup()
+    eyes_turt.setheading(0)
     eyes_turt.penup()
     eyes_turt.goto(20, 60)
-    #eyes_turt.left(90)
-    #eyes_turt.forward(60)
-    #eyes_turt.right(90)
-    #eyes_turt.forward(20)
     eyes_turt.pendown()
     eyes_turt.fillcolor("white")
     eyes_turt.begin_fill()
     eyes_turt.right(50)
-    eyes_turt.circle(70, 100)
+    eyes_turt.circle(60, 100)
     eyes_turt.left(80)
-    eyes_turt.circle(70, 100)
+    eyes_turt.circle(60, 100)
     eyes_turt.end_fill()
     eyes_turt.penup()
-    eyes_turt.right(50)
-    eyes_turt.back(55)
-    eyes_turt.dot(45, color)
+    eyes_turt.goto(65, 60)
+    eyes_turt.dot(40, color)
     eyes_turt.dot(20, "black")
+    eyes_turt.setheading(180)
     eyes_turt.penup()
     eyes_turt.forward(90)
     eyes_turt.pendown()
     eyes_turt.fillcolor("white")
     eyes_turt.begin_fill()
     eyes_turt.right(50)
-    eyes_turt.circle(70, 100)
+    eyes_turt.circle(60, 100)
     eyes_turt.left(80)
-    eyes_turt.circle(70, 100)
+    eyes_turt.circle(60, 100)
     eyes_turt.end_fill()
     eyes_turt.penup()
-    eyes_turt.right(50)
-    eyes_turt.back(55)
-    eyes_turt.dot(45, color)
+    eyes_turt.goto(-70, 60)
+    eyes_turt.dot(40, color)
     eyes_turt.dot(20, "black")
+    screen.update()
 
 def draw_eyes_blue():
     draw_eyes("light blue")
@@ -392,6 +390,7 @@ def eyebrow_neutral():
     eyebrow_turt.pendown()
     eyebrow_turt.forward(70)
 
+
 face_frame = tk.Frame(root)
 face_frame.pack(pady = 10)
 
@@ -406,7 +405,7 @@ tk.Button(face_frame, text="Shade 5", width=5, command=draw_face_shade5).grid(ro
 mouth_frame = tk.Frame(root)
 mouth_frame.pack(pady=10)
 
-tk.Label(mouth_frame, text="Backgrounds:").grid(row=0, column=0)
+tk.Label(mouth_frame, text="Mouth:").grid(row=0, column=0)
 tk.Button(mouth_frame, text="Smile", command=draw_smile, width=10).grid(row=0, column=1, padx=5)
 tk.Button(mouth_frame, text="Frown", command=draw_frown, width=10).grid(row=0, column=2, padx=5)
 tk.Button(mouth_frame, text="Excited", command=draw_excited, width=10).grid(row=0, column=3, padx=5)
@@ -472,12 +471,8 @@ tk.Button(eyebrow_frame, text = "Neutral", command = eyebrow_neutral, width=10).
 tk.Button(eyebrow_frame, text = "Angry", command = eyebrow_angry, width=10).grid(row=0, column=3, padx=5)
 
 
-#calling the nose and hair function
-#draw_hair_strands(hair_turtle,"black", 145, 146, strands=25)#draws the default hair
-screen.tracer(0,0)
+screen.tracer()
 screen.update()
-#draw_nose(nose_turtle)
-
 
 # Run the App
 root.mainloop()
