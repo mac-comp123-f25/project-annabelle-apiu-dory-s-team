@@ -304,7 +304,7 @@ def draw_hair():
     center_hair.pensize(30)
     center_hair.penup()
     center_hair.hideturtle()
-    center_hair.goto(-70, 195)  # moved slightly right from -85 → -70
+    center_hair.goto(-70, 195)  
     center_hair.pendown()
     center_hair.begin_fill()
     center_hair.setheading(5)
@@ -313,7 +313,7 @@ def draw_hair():
     screen.update()
 
 def draw_selected_hair():
-    hair_color = color_entry.get() or "black"
+    hair_color ="black"
     mode = hair_mode.get()
     hair_turtle.clear()
     hair_turtle.speed(0)
@@ -451,11 +451,7 @@ tk.Button(ears_frame, text="Ears + Earrings", width=12, command=draw_ears_with_e
 bottom_controls = tk.Frame(root)
 bottom_controls.pack(pady=10)
 
-# Hair color
-tk.Label(bottom_controls, text="Hair color:").pack(side="left", padx=5)
-color_entry = tk.Entry(bottom_controls, width=10)
-color_entry.pack(side="left", padx=5)
-color_entry.insert(0, "black")
+
 
 # Draw Hair button
 tk.Button(bottom_controls, text="Draw Hair", command=draw_selected_hair).pack(side="left", padx=5)
