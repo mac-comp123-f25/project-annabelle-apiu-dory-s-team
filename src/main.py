@@ -428,6 +428,8 @@ def clear_all():
     bg_turt.clear()
     ear_turt.clear()
     hair_turtle.clear()
+    right_hair.clear()
+    center_hair.clear()
     nose_turtle.clear()
     eyes_turt.clear()
     eyebrow_turt.clear()
