@@ -30,6 +30,7 @@ ear_turt.speed(0)
 
 #hair and the nose turtle
 hair_turtle=turtle.RawTurtle(screen)
+hair_turtle.hideturtle()
 hair_turtle.speed(0)
 nose_turtle = turtle.RawTurtle(screen)
 nose_turtle.hideturtle()
@@ -46,8 +47,14 @@ eyebrow_turt.speed(0)
 eyebrow_turt.hideturtle()
 
 hair_turtle=turtle.RawTurtle(screen)
+hair_turtle.hideturtle()
+hair_turtle.speed(0)
 right_hair=turtle.RawTurtle(screen)
+right_hair.hideturtle()
+right_hair.speed(0)
 center_hair=turtle.RawTurtle(screen)
+center_hair.hideturtle()
+center_hair.speed(0)
 
 # Face Drawing
 def draw_face(color):
@@ -411,6 +418,20 @@ def eyebrow_neutral():
     eyebrow_turt.pendown()
     eyebrow_turt.forward(70)
 
+def clear_all():
+    face_turt.clear()
+    mouth_turt.clear()
+    bg_turt.clear()
+    ear_turt.clear()
+    hair_turtle.clear()
+    nose_turtle.clear()
+    eyes_turt.clear()
+    center_hair.clear()
+    right_hair.clear()
+    eyebrow_turt.clear()
+    screen.bgcolor("white")
+    screen.update()
+
 
 face_frame = tk.Frame(root)
 face_frame.pack(pady = 10)
@@ -487,6 +508,9 @@ tk.Button(eyebrow_frame, text = "Raised", command = eyebrow_raised, width=10).gr
 tk.Button(eyebrow_frame, text = "Neutral", command = eyebrow_neutral, width=10).grid(row=0, column=2, padx=5)
 tk.Button(eyebrow_frame, text = "Angry", command = eyebrow_angry, width=10).grid(row=0, column=3, padx=5)
 
+clear_frame = tk.Frame(root)
+clear_frame.pack(pady=10)
+tk.Button(clear_frame, text="Clear All", width=15, fg="black", command=clear_all).pack()
 
 screen.tracer()
 screen.update()
