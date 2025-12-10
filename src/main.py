@@ -45,6 +45,10 @@ eyebrow_turt.width(8)
 eyebrow_turt.speed(0)
 eyebrow_turt.hideturtle()
 
+hair_turtle=turtle.RawTurtle(screen)
+right_hair=turtle.RawTurtle(screen)
+center_hair=turtle.RawTurtle(screen)
+
 # Face Drawing
 def draw_face(color):
     face_turt.penup()
@@ -274,21 +278,38 @@ def draw_hair_bun(t, color):
         t.right(90)
     t.end_fill()
 
-def draw_hair_strands(t, color, start_x=145, start_y=146, strands=20):
-    t.hideturtle()
-    t.pencolor(color)
-    t.pensize(3)
-    t.penup()
-    t.goto(start_x, start_y)
-    t.pendown()
+def draw_hair():
+    hair_turtle.pensize(30)
+    hair_turtle.hideturtle()
+    hair_turtle.penup()
+    hair_turtle.goto(65,200)
+    hair_turtle.pendown()
+    hair_turtle.setheading(310)
+    hair_turtle.begin_fill()
+    hair_turtle.circle(-410,23)
+    #hair_turtle.forward(50)
+    hair_turtle.end_fill()
 
-    for i in range(strands):
-        t.setheading(130)
-        t.circle(150, 60)
-        t.circle(150, 60)
-        t.penup()
-        t.goto(start_x - (i * 3), start_y)
-        t.pendown()
+    # left hair
+    right_hair.penup()
+    right_hair.pensize(30)
+    right_hair.hideturtle()
+    right_hair.goto(-50,194)
+    right_hair.pendown()
+    right_hair.begin_fill()
+    right_hair.setheading(220)
+    right_hair.circle(410,22)
+    right_hair.end_fill()
+    #center piece
+    center_hair.pensize(30)
+    center_hair.penup()
+    center_hair.hideturtle()
+    center_hair.goto(-70, 195)  # moved slightly right from -85 → -70
+    center_hair.pendown()
+    center_hair.begin_fill()
+    center_hair.setheading(5)
+    center_hair.circle(-420, 20)
+    center_hair.end_fill()
     screen.update()
 
 def draw_selected_hair():
@@ -300,7 +321,7 @@ def draw_selected_hair():
     if mode == "bun":
         draw_hair_bun(hair_turtle, hair_color)
     else:
-        draw_hair_strands(hair_turtle, hair_color, start_x=145, start_y=146, strands=20)
+        draw_hair()
     screen.update()
 
 def draw_eyes(color):
