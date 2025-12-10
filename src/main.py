@@ -3,7 +3,7 @@ import tkinter as tk
 
 # Tkinter Window + Turtle Setup
 root = tk.Tk()
-root.title("Mouth Drawer")
+root.title("Avatar Maker")
 
 canvas = tk.Canvas(root, width=600, height=600)
 canvas.pack(side = "right")

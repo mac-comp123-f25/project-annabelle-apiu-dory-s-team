@@ -1,4 +1,11 @@
 # Avatar Maker
+This is the repository for Annabelle, Apiu, and Dory's Computer Science 123 Final Project. 
+We built an avatar maker that takes user input via buttons to customize a Turtle drawing
+of a cartoon face. The code to run the avatar maker can be found in the main.py file.
+In order to run the code, Python version 3.13 and PyCharm 2025.2.1 must be installed.
+The output of the code should show a window that looks like this:
+
+![Avatar Maker Output](Screenshot%202025-12-09%20at%2010.07.51%20PM.png)
 
 Presentation:
 ![1](slides/1.jpg)
