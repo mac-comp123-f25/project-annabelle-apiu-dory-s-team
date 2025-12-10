@@ -25,4 +25,4 @@ Presentation:
 ![15](slides/15.jpg)
 
 Video:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/s5WiW60F40k?si=58r_WAS2_r5wmWVf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![Video](slides/1.jpg)](https://www.youtube.com/watch?v=s5WiW60F40k&feature=youtu.be)
